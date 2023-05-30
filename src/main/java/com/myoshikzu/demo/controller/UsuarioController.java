@@ -31,7 +31,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemUsuario>> listar(@PageableDefault(size = 10, sort="{nome}") Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemUsuario>> listar(@PageableDefault(size = 10,sort = {"nome"}) Pageable paginacao){
         return ResponseEntity.ok(usuarioService.getAll(paginacao).map(DadosListagemUsuario::new));
     }
 

@@ -34,7 +34,10 @@ public class UsuarioService {
     }
 
     public Usuario getUsuario(Long id){
-        var usuario = usuarioRepository.getReferenceById(id);
+        var usuario = usuarioRepository.findById(id).orElse(null);
+        if(usuario == null){
+            throw new RuntimeException("Usuário (id: " +  id + ") não cadastrado no sistema!");
+        }
         return usuario;
     }
 

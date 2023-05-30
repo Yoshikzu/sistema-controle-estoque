@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
     @Query("SELECT u FROM tb_usuario u WHERE login = :login")
-    Usuario findUsuarioByLogin(String login);
+    Optional<Usuario> findUsuarioByLogin(String login);
 
     @Query("SELECT u FROM tb_usuario u")
     Page<Usuario> findAll(Pageable paginacao);
