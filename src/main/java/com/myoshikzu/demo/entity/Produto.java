@@ -1,5 +1,6 @@
 package com.myoshikzu.demo.entity;
 
+import com.myoshikzu.demo.entity.dto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,9 +10,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@EqualsAndHashCode(of = "codigoBarra")
-@Entity
-@Table(name = "Produto")
+@EqualsAndHashCode(of = "codigoBarras")
+@Entity(name = "produto")
+@Table(name = "produto")
 public class Produto {
 
     @Id
@@ -23,4 +24,11 @@ public class Produto {
     private int quantidadeMinima;
     private int saldoInicial;
     private LocalDateTime dataCadastro = LocalDateTime.now();
+
+    public Produto(DadosCadastroProduto dados){
+        this.nome = dados.nome();
+        this.codigoBarras = dados.codigoBarras();
+        this.quantidadeMinima = dados.quantidadeMinima();
+        this.saldoInicial = dados.saldoInicial();
+    }
 }
