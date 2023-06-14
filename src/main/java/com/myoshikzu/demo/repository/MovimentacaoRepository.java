@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovimentacaoRepository extends JpaRepository<Movimentacao,Long> {
+public interface MovimentacaoRepository extends JpaRepository<Movimentacao,Long> {
 
 }

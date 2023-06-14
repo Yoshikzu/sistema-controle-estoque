@@ -1,5 +1,6 @@
 package com.myoshikzu.demo.entity;
 
+import com.myoshikzu.demo.entity.dto.DadosCadastroMovimentacao;
 import com.myoshikzu.demo.entity.enums.TipoMovimento;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,5 +30,12 @@ public class Movimentacao {
 
     private int quantidade;
     private LocalDateTime dataMovimentacao;
+
+    public Movimentacao(Produto produto, int quantidade, TipoMovimento tipoMovimento, LocalDateTime dataMovimentacao){
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.tipoMovimento = tipoMovimento;
+        this.dataMovimentacao = dataMovimentacao;
+    }
 
 }
