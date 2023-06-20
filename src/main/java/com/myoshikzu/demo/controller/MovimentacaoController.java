@@ -1,13 +1,13 @@
 package com.myoshikzu.demo.controller;
 
-import com.myoshikzu.demo.entity.dto.DadosCadastroMovimentacao;
-import com.myoshikzu.demo.entity.dto.DadosCadastroProduto;
-import com.myoshikzu.demo.entity.dto.DadosDetalhamentoMovimentacao;
-import com.myoshikzu.demo.entity.dto.DadosDetalhamentoProduto;
+import com.myoshikzu.demo.entity.dto.*;
 import com.myoshikzu.demo.service.MovimentacaoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,6 +27,9 @@ public class MovimentacaoController {
         return ResponseEntity.created(uri).body(new DadosDetalhamentoMovimentacao(movimentacao));
     }
 
-
+    @GetMapping
+    public ResponseEntity<Page<DadosListagemMovimentacao>> listar(@PageableDefault(size=10,sort={"dataMovimentacao"}) Pageable paginacao){
+        return ResponseEntity.ok(movimentacaoService.getAll(paginacao).map(DadosListagemMovimentacao::new));
+    }
 }
 
