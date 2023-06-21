@@ -32,4 +32,12 @@ public class MovimentacaoService {
     public Page<Movimentacao> getAll (Pageable paginacao){
         return movimentacaoRepository.findAll(paginacao);
     }
+
+    public Movimentacao getMovimentacao(Long id){
+        var movimentacao = movimentacaoRepository.findById(id).orElse(null);
+        if(movimentacao == null){
+            throw new RuntimeException("Movimentação (id: " +  id + ") não cadastrada no sistema!");
+        }
+        return movimentacao;
+    }
 }

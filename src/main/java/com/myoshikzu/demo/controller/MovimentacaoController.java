@@ -31,5 +31,11 @@ public class MovimentacaoController {
     public ResponseEntity<Page<DadosListagemMovimentacao>> listar(@PageableDefault(size=10,sort={"dataMovimentacao"}) Pageable paginacao){
         return ResponseEntity.ok(movimentacaoService.getAll(paginacao).map(DadosListagemMovimentacao::new));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalharMovimentacao(@PathVariable Long id){
+        return ResponseEntity.ok(new DadosDetalhamentoMovimentacao(movimentacaoService.getMovimentacao(id)));
+    }
+
 }
 
