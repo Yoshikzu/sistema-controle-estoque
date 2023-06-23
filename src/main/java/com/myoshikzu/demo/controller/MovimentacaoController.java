@@ -37,5 +37,18 @@ public class MovimentacaoController {
         return ResponseEntity.ok(new DadosDetalhamentoMovimentacao(movimentacaoService.getMovimentacao(id)));
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity excluir(Long id){
+        movimentacaoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMovimentacao dados){
+        return ResponseEntity.ok(new DadosDetalhamentoMovimentacao(movimentacaoService.update(dados)));
+    }
+
 }
 
