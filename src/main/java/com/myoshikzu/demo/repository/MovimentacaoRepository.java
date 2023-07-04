@@ -14,5 +14,6 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao,Long>
     @Query("SELECT m FROM movimentacao m")
     Page<Movimentacao> findAll(Pageable paginacao);
 
-
+    @Query("SELECT m FROM movimentacao m WHERE id = :id")
+    Movimentacao getById(Long id);
 }

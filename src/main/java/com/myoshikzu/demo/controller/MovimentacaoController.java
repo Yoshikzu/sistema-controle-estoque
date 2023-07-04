@@ -39,7 +39,7 @@ public class MovimentacaoController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(Long id){
+    public ResponseEntity excluir(@PathVariable Long id){
         movimentacaoService.delete(id);
         return ResponseEntity.noContent().build();
     }

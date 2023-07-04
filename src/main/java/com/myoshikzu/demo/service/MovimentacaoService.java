@@ -44,6 +44,8 @@ public class MovimentacaoService {
         if(movimentacao == null){
             throw new RuntimeException("Movimentação (id: " +  id + ") não cadastrada no sistema!");
         }
+        var produto = produtoService.getProduto(movimentacao.getProduto().getId());
+        movimentacao.setProduto(produto);
         return movimentacao;
     }
 
